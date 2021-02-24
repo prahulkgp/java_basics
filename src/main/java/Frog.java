@@ -11,11 +11,11 @@ public class Frog {
         System.out.println("Frog can cross the lake in " + ways(11) + " ways.");
     }
     static int ways(int n) {
-        if (n > 2) {
-            return 2 + ways(n - 1) + ways(n - 2);
+        if (n >= 2) {
+            return ways(n - 1) + ways(n - 2);
         }
         else {
-            return n;
+            return 1;
         }
     }
 }
