@@ -20,13 +20,28 @@ public class DCP2 {
         System.out.println("Here's the output array.\n" + Arrays.toString(output(input, size)));
     }
     static int[] output(int[] input, int size) {
-        int product = 1;
+        int nz_product = 1;
+        int zeroes = 0;
         int[] output = new int[size];
         for (int i = 0; i < size; i++) {
-            product = product * input[i];
+            if (input[i] != 0) nz_product = nz_product * input[i];
+            else {
+                zeroes++;
+            }
         }
         for (int i = 0; i < size; i++) {
-            output[i] = product / input[i];
+            if (zeroes > 0) {
+                if (zeroes == 1) {
+                    if (input[i] == 0) output[i] = nz_product;
+                    else output[i] = 0;
+                }
+                else {
+                    output[i] = 0;
+                }
+            }
+            else {
+                output[i] = nz_product / input[i];
+            }
         }
         return output;
     }
