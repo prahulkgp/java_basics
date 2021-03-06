@@ -10,12 +10,12 @@ public class DCP7 {
         System.out.println("Type in your coded message.");
         Scanner read = new Scanner(System.in);
         String input = read.next();
-        System.out.println("The message can be decoded in " + decode_count(input, 0) + "ways.");
+        System.out.println("The message can be decoded in " + decode_count(input, 0) + " ways.");
     }
     static int decode_count(String input, int i) {
         if (i < (input.length() - 1)) {
             if ((Character.getNumericValue(input.charAt(i)) + (10 * Character.getNumericValue(input.charAt(i + 1)))) < 27) {
-                return decode_count(input, i) + decode_count(input, i + 1);
+                return decode_count(input, i + 1) + decode_count(input, i + 2);
             } else {
                 return decode_count(input, i);
             }
