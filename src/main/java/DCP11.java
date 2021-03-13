@@ -27,7 +27,7 @@ public class DCP11 {
         }
         for (int i = 0; i < length; i++) {
             for (int j = 0; j < strings.size(); j++) {
-                while (check[j] == 1) {
+                if (check[j] == 1) {
                     if (query.charAt(i) != strings.get(j).charAt(i)) check[j] = 0;
                 }
             }
