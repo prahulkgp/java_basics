@@ -1,34 +1,37 @@
-/*
-https://www.interviewbit.com/problems/add-one-to-number/
- */
-
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class AddOneToNumber {
-    public static void main (String[] args) {
-        System.out.println("Enter the non-negative number.");
-        Scanner read = new Scanner(System.in);
-        int input = read.nextInt();
-        System.out.println("Output: " + AddOne (input));
-    }
-    static String AddOne (int input) {
-        String input_str = Integer.toString(input);
-        int[] input_arr = new int[input_str.length()];
-        for (int i = 0; i < input_str.length(); i++) {
-            input_arr[i] = input_str.charAt(i);
+    public ArrayList<Integer> plusOne(ArrayList<Integer> A) {
+        ArrayList<Integer> B = new ArrayList<>();
+        ArrayList<Integer> output = new ArrayList<>();
+        for (int i = A.size() - 1; i >= 0; i--) {
+            B.add(A.get(i));
         }
-        int len = input_arr.length - 1;
-        int carry = 1;
-        if ((input_arr[len] + 1) == 10) {
-            input_arr[len] = 0;
-            for (int i = len - 1; i >= 0; i--) {
-                if ((input_arr[i] + carry) == 10) {
-                    input_arr[i] = 0;
-                }
+        int len = B.size() - 1;
+        B.set(0, B.get(0) + 1);
+        for (int i = 0; i < len; i++) {
+            if (B.get(i) > 9) {
+                B.set(i, 0);
+                B.set(i + 1, B.get(i + 1) + 1);
             }
         }
-        else input_arr[len]++;
-        return Arrays.toString(input_arr);
+        for (int i = len; i >= 0; i--) {
+            if (B.get(i) == 0) {
+                B.remove(i);
+                len--;
+            }
+            else break;
+        }
+        if (B.get(len) < 10) {
+            for (int i = len; i >= 0; i--) {
+                output.add(B.get(i));
+            }
+        }
+        else {
+            B.set(len, 0);
+            B.add(1);
+            for (int i = len + 1; i >= 0; i--) {
+                output.add(B.get(i));
+            }
+        }
+        return output;
     }
 }
