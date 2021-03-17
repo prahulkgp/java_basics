@@ -2,6 +2,8 @@
 https://www.interviewbit.com/problems/add-one-to-number/
  */
 
+import java.util.ArrayList;
+
 public class AddOneToNumber {
     public ArrayList<Integer> plusOne(ArrayList<Integer> A) {
         ArrayList<Integer> B = new ArrayList<>();
