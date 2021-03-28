@@ -47,25 +47,29 @@ public class MergeSortedLists2 {
 
      */
     private static void merge(ArrayList<Integer> a, ArrayList<Integer> b) {
-        int i = a.size() - 1, j = b.size() - 1, na = a.size() + b.size() - 1;
-        while (i >= 0 && j >= 0) {
-            if (a.get(i).equals(b.get(j))) {
-                a.set(na, a.get(i));
-                na--;
-                a.set(na, b.get(j));
-                na--;
-                i--; j--;
-            }
-            else if (a.get(i) > b.get(j)) {
-                a.set(na, a.get(i));
-                na--;
-                i--;
+        ArrayList<Integer> c = new ArrayList<Integer>();
+        int i = 0, j = 0;
+        while (i < a.size() && j < b.size()) {
+            if (a.get(i) == b.get(j)) {
+                c.add(a.get(i)); c.add(b.get(j));
+                i++; j++;
             }
             else if (a.get(i) < b.get(j)) {
-                a.set(na, b.get(j));
-                na--;
-                j--;
+                c.add(a.get(i));
+                i++;
             }
+            else if (a.get(i) > b.get(j)) {
+                c.add(b.get(j));
+                j++;
+            }
+        }
+
+        if (i >= a.size()) for (; j < b.size(); j++) c.add(b.get(j));
+        else if (j >= b.size()) for (; i < a.size(); i++) c.add(a.get(i));
+
+        for (int k = 0; k < c.size(); k++) {
+            if (k < a.size()) a.set(k, c.get(k));
+            else a.add(c.get(k));
         }
     }
 }
