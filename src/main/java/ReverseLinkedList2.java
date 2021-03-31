@@ -3,6 +3,7 @@ https://www.interviewbit.com/problems/reverse-link-list-ii/
  */
 public class ReverseLinkedList2 {
     ListNode reverseBetween(ListNode A, int B, int C) {
+        if (A.next == null) return A;
         int i = 1;
         ListNode current = A, beforeB = null;
         while (i < B) {
@@ -22,10 +23,16 @@ public class ReverseLinkedList2 {
             current = next;
             i++;
         }
-        ListNode nodeC = next;
-        beforeB.next = prev;
-        current.next = null;
-        start.next = current;
+        if (current != null) {
+            ListNode nodeC = next;
+            beforeB.next = prev;
+            current.next = null;
+            start.next = current;
+        }
+        else {
+            beforeB.next = prev;
+            start.next = null;
+        }
 
         return A;
     }
